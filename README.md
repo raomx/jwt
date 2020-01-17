@@ -21,3 +21,14 @@ The JWT is a easy and minimal implementation of JWT, and just implements HMAC SH
         return fmt.Errorf("Parse %s err: %w", token, err)
     }
     name := claims["name"]
+
+### What did the JWT do?
+The JWT just has just two APIs: GetToken() and Parse().
+In GetToken, The JWT sets tokenID, issuer, issuedAt, expiresAt, notBeforeAt and secret
+In Parse, The JWT verifies token secret, tokenID, issuer, issuedAt, expiresAt, notBeforeAt and header.
+The secret is a list byte, length between 25-32.
+
+### What can you do?
+You can change expires duration by SettokenDur() which default is 2 hours.
+You can change issuer by SetIss()
+And you can add sub, aud and anything you want by Claims.
