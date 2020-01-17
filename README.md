@@ -23,7 +23,7 @@ The JWT is a easy and minimal implementation of JWT, and just implements HMAC SH
     name := claims["name"]
 
 ### What did the JWT do?
-  The JWT just has just two APIs: GetToken() and Parse().  
+  The JWT has just two APIs: GetToken() and Parse().  
   In GetToken, The JWT sets tokenID, issuer, issuedAt, expiresAt, notBeforeAt and secret.  
   In Parse, The JWT verifies token secret, tokenID, issuer, issuedAt, expiresAt, notBeforeAt and header.  
   The secret is a list byte, length between 25-32.  
