@@ -1,6 +1,7 @@
 // Copyright 2020 Raomx. All rights reserved.
 // Use of this source code is governed by MIT
 // license that can be found in the LICENSE file.
+//
 // Package jwt is a easy and minimal implementation of JWT, and just implements HMAC SHA-256.
 package jwt
 

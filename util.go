@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-//Get a list rand bytes as secret
+// RandByte is used to get a list rand bytes as secret
 func RandByte() []byte {
 	rand.Seed(time.Now().Unix())
 	var letters = []byte("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
