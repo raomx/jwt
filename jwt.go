@@ -16,7 +16,7 @@
 // How to get Claims from token:
 //  token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkxOTc0OTUsImlhdCI6MTU3OTE5MDI5NSwiaXNzIjoiYXV0aC5leGFtcGxlLmNvbSIsImp0aSI6IjAxZTZjNTczLTQ4YzQtNDYyMi04M2U3LThiNjRhZDNkZjg0NyIsIm5iZiI6MTU3OTE5MDI5NSwibmFtZSI6InJhb214IiwiYWdlIjozOH0.3jGXEPaXLuUsH8R-m-BDQght3-IhoUHDO7kK5gR0CsA"
 //  claims, err :=  Parse(token)
-//  if err := nil {
+//  if err != nil {
 //      return fmt.Errorf("Parse %s err: %w", token, err)
 //  }
 //  name := claims["name"]
