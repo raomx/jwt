@@ -2,7 +2,7 @@
 
 
 # JWT
-The JWT is a easy and minimal implementation of JWT, and just implements HMAC SHA-256.
+The JWT is a easy and minimal implementation of JWT, and just implements HMAC SHA-256 by go(golang).
 
 ## How to use:
 
