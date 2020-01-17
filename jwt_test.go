@@ -21,7 +21,7 @@ func TestParse(t *testing.T) {
 	}
 }
 
-func TestCheckExpires(t *testing.T){
+func TestCheckExpires(t *testing.T) {
 	var claims = Claims{}
 	now := time.Now()
 	claims[notBeforeAt] = now.Add(-10 * time.Minute).Unix()
@@ -47,7 +47,7 @@ func TestCheckExpires(t *testing.T){
 	}
 }
 
-func TestVerifyHead(t *testing.T)  {
+func TestVerifyHead(t *testing.T) {
 	var headToke = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 	var err = verifyHeader(headToke)
 	if err != nil {
@@ -64,7 +64,7 @@ func TestVerify(t *testing.T) {
 	setSecret("TestVerify")
 	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.8G4jyYZbsg1xtuUzD0JNSiHfIPT0CziOw1DRCTszVDE"
 	wanted := true
-	if verifyToken(token) != wanted{
+	if verifyToken(token) != wanted {
 		t.Error("TestVerify failed")
 	}
 }
@@ -81,7 +81,7 @@ func TestGetToken(t *testing.T) {
 	if wanted != claims.GetToken() {
 		t.Error("GetToken failed")
 	}
-	if (!verifyToken(claims.GetToken())) {
+	if !verifyToken(claims.GetToken()) {
 		t.Error("GetToken failed")
 	}
 }

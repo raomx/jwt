@@ -9,4 +9,3 @@ func TestRandstr(t *testing.T) {
 	var s = RandByte()
 	fmt.Println(string(s))
 }
-

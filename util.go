@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-func RandByte() []byte{
+func RandByte() []byte {
 	rand.Seed(time.Now().Unix())
 	var letters = []byte("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 	length := 25 + rand.Intn(8)
 	b := make([]byte, length)
-	for i := range b{
+	for i := range b {
 		b[i] = letters[rand.Intn(len(letters))]
 		for i > 0 && b[i] == b[i-1] {
 			b[i] = letters[rand.Intn(len(letters))]
@@ -19,7 +19,6 @@ func RandByte() []byte{
 	}
 	return b
 }
-
 
 func UUID() string {
 	version := byte(4)

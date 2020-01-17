@@ -53,20 +53,19 @@ const (
 
 // issuer and expires can be changed.
 var (
-
 	iss = "jwt.example.com"
 
 	tokenDur = 2 * time.Hour
 )
 
 // Set secret
-func init()  {
+func init() {
 	secret = RandByte()
 }
 
 // Get Token from Claims.
-func (cusClaims Claims)GetToken() string {
-	headerEnc, _ := json.Marshal(map[string]interface{}{"alg": "HS256","typ": "JWT"})
+func (cusClaims Claims) GetToken() string {
+	headerEnc, _ := json.Marshal(map[string]interface{}{"alg": "HS256", "typ": "JWT"})
 	cusClaims.setRegClaims()
 	claimsEnc, _ := json.Marshal(cusClaims)
 
@@ -87,7 +86,7 @@ func (cusClaims Claims)GetToken() string {
 // the error is not nil.
 func Parse(tokenStr string) (Claims, error) {
 
-	if ! verifyToken(tokenStr) {
+	if !verifyToken(tokenStr) {
 		return nil, errTokenInvalid
 	}
 
@@ -120,12 +119,12 @@ func Parse(tokenStr string) (Claims, error) {
 }
 
 // Set issuer.
-func SetIss(issuer string)  {
+func SetIss(issuer string) {
 	iss = issuer
 }
 
 // Set expires.
-func SettokenDur(dur time.Duration)  {
+func SettokenDur(dur time.Duration) {
 	tokenDur = dur
 }
 

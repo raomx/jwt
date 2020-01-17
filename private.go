@@ -25,7 +25,6 @@ func (c Claims) setRegClaims() {
 	c[expiresAt] = now.Add(tokenDur).Unix()
 }
 
-
 //Validate registered claims
 func (c Claims) validate() error {
 
@@ -47,7 +46,7 @@ func (c Claims) validate() error {
 		return errClaimValueInvalid
 	}
 
-	if !c.Has(tokenID)  {
+	if !c.Has(tokenID) {
 		return errClaimValueInvalid
 	}
 
@@ -55,7 +54,7 @@ func (c Claims) validate() error {
 }
 
 //Validate expires, include notBeforeAt, expiresAt and issuedAt.
-func(c Claims)checkExpires(now int64, tag string) error{
+func (c Claims) checkExpires(now int64, tag string) error {
 	if c.Has(tag) {
 		exp := c[tag]
 		var target int64
@@ -87,7 +86,7 @@ func(c Claims)checkExpires(now int64, tag string) error{
 		default:
 			return errClaimValueInvalid
 		}
-		if tag == notBeforeAt && now < target{
+		if tag == notBeforeAt && now < target {
 			return errClaimValueInvalid
 		}
 		if tag == expiresAt && now > target {
@@ -101,7 +100,6 @@ func(c Claims)checkExpires(now int64, tag string) error{
 	}
 	return nil
 }
-
 
 ////Validate header
 func verifyHeader(headToken string) error {
@@ -126,7 +124,6 @@ func verifyHeader(headToken string) error {
 	return nil
 }
 
-
 //Validate token secret.
 func verifyToken(token string) bool {
 	t := strings.Split(token, ".")
@@ -138,13 +135,12 @@ func verifyToken(token string) bool {
 	expectedMAC := mac.Sum(nil)
 	signature, err := base64.RawURLEncoding.DecodeString(t[2])
 	if err != nil {
-		log.Printf("Verify token %s: %v",token, err)
+		log.Printf("Verify token %s: %v", token, err)
 		return false
 	}
 	return hmac.Equal(signature, expectedMAC)
 }
 
-func setSecret(s string)  {
+func setSecret(s string) {
 	secret = []byte(s)
 }
-
