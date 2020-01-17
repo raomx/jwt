@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/raomx/jwt)](https://goreportcard.com/report/github.com/raomx/jwt) [![GoDoc](https://godoc.org/github.com/robbert229/jwt?status.svg)](https://godoc.org/github.com/raomx/jwt)
+[![Build Status](https://travis-ci.org/raomx/jwt.svg?branch=master)](https://travis-ci.org/raomx/jwt) [![Go Report Card](https://goreportcard.com/badge/github.com/raomx/jwt)](https://goreportcard.com/report/github.com/raomx/jwt) [![GoDoc](https://godoc.org/github.com/robbert229/jwt?status.svg)](https://godoc.org/github.com/raomx/jwt)
 
 
 # JWT
