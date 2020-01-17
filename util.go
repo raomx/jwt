@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+//Get a list rand bytes as secret
 func RandByte() []byte {
 	rand.Seed(time.Now().Unix())
 	var letters = []byte("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -20,6 +21,7 @@ func RandByte() []byte {
 	return b
 }
 
+// UUID v4
 func UUID() string {
 	version := byte(4)
 	uuid := make([]byte, 16)

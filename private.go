@@ -1,6 +1,7 @@
 // Copyright 2020 Raomx. All rights reserved.
 // Use of this source code is governed by MIT
 // license that can be found in the LICENSE file.
+// Package jwt is a easy and minimal implementation of JWT, and just implements HMAC SHA-256.
 package jwt
 
 import (
@@ -15,38 +16,38 @@ import (
 )
 
 // Set the registered claims.
-func (c Claims) setRegClaims() {
-	c[issuer] = iss
-	c[tokenID] = UUID()
+func (claims Claims) setRegClaims() {
+	claims[issuer] = iss
+	claims[tokenID] = UUID()
 	now := time.Now()
 
-	c[issuedAt] = now.Unix()
-	c[notBeforeAt] = now.Unix()
-	c[expiresAt] = now.Add(tokenDur).Unix()
+	claims[issuedAt] = now.Unix()
+	claims[notBeforeAt] = now.Unix()
+	claims[expiresAt] = now.Add(tokenDur).Unix()
 }
 
 //Validate registered claims
-func (c Claims) validate() error {
+func (claims Claims) validate() error {
 
 	now := time.Now().Unix()
 
-	if err := c.checkExpires(now, notBeforeAt); err != nil {
+	if err := claims.checkExpires(now, notBeforeAt); err != nil {
 		return err
 	}
 
-	if err := c.checkExpires(now, expiresAt); err != nil {
+	if err := claims.checkExpires(now, expiresAt); err != nil {
 		return err
 	}
 
-	if err := c.checkExpires(now, issuedAt); err != nil {
+	if err := claims.checkExpires(now, issuedAt); err != nil {
 		return err
 	}
 
-	if !c.Has(issuer) || c[issuer] != iss {
+	if !claims.Has(issuer) || claims[issuer] != iss {
 		return errClaimValueInvalid
 	}
 
-	if !c.Has(tokenID) {
+	if !claims.Has(tokenID) {
 		return errClaimValueInvalid
 	}
 
@@ -54,9 +55,9 @@ func (c Claims) validate() error {
 }
 
 //Validate expires, include notBeforeAt, expiresAt and issuedAt.
-func (c Claims) checkExpires(now int64, tag string) error {
-	if c.Has(tag) {
-		exp := c[tag]
+func (claims Claims) checkExpires(now int64, tag string) error {
+	if claims.Has(tag) {
+		exp := claims[tag]
 		var target int64
 		switch val := exp.(type) {
 		case float32:
