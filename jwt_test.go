@@ -1,7 +1,6 @@
 package jwt
 
 import (
-	"fmt"
 	"testing"
 	"time"
 )
@@ -76,11 +75,7 @@ func TestGetToken(t *testing.T) {
 	claims["sub"] = "test"
 	claims["role"] = "user"
 	claims["name"] = "rao"
-	wanted := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOjEyMywibmFtZSI6InJhbyIsInJvbGUiOiJ1c2VyIiwic3ViIjoidGVzdCJ9.P9bLkE_lL-t7-1-q5LBFJxonGBqkE_ZTIVZdJJxypWE"
-	fmt.Printf(claims.GetToken())
-	if wanted != claims.GetToken() {
-		t.Error("GetToken failed")
-	}
+
 	if !verifyToken(claims.GetToken()) {
 		t.Error("GetToken failed")
 	}
