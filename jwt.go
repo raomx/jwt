@@ -6,7 +6,7 @@
 // It just has two APIs, Verify() and Sign().
 //
 // How to get a jwt token:
-//  claims = Claims {
+//  claims := Claims {
 //      "name": raomx,
 //      "age":  38,
 //  }
