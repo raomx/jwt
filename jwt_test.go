@@ -8,15 +8,15 @@ import (
 func TestParse(t *testing.T) {
 	setSecret("TestVerify")
 	var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NzkxODc0OTcsImlhdCI6MTU3OTE4NzQ5NywiZXhwIjoxNTc5MTk3MDAwLCJpc3MiOiJhdXRoLmV4YW1wbGUuY29tIn0.Bm6P3FogmZ0KClttChN_TuKes6_yrgo_FylkGNlW404"
-	_, err := Parse(token)
+	_, err := Verify(token)
 	if err == nil {
-		t.Error("Parse err")
+		t.Error("Verify err")
 	}
 	var cusClaims = Claims{}
-	token = cusClaims.GetToken()
-	_, err = Parse(token)
+	token = cusClaims.Sign()
+	_, err = Verify(token)
 	if err != nil {
-		t.Error("Parse err")
+		t.Error("Verify err")
 	}
 }
 
@@ -76,7 +76,7 @@ func TestGetToken(t *testing.T) {
 	claims["role"] = "user"
 	claims["name"] = "rao"
 
-	if !verifyToken(claims.GetToken()) {
-		t.Error("GetToken failed")
+	if !verifyToken(claims.Sign()) {
+		t.Error("Sign failed")
 	}
 }

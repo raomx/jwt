@@ -3,21 +3,21 @@
 // license that can be found in the LICENSE file.
 
 // Package jwt is a easy and minimal implementation of JWT, and just implements HMAC SHA-256.
-// It just has two APIs, Parse() and GetToken().
+// It just has two APIs, Verify() and Sign().
 //
 // How to get a jwt token:
 //  claims = Claims {
 //      "name": raomx,
 //      "age":  38,
 //  }
-//  token := claims.GetToken()
+//  token := claims.Sign()
 //
 //
 // How to get Claims from token:
 //  token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkxOTc0OTUsImlhdCI6MTU3OTE5MDI5NSwiaXNzIjoiYXV0aC5leGFtcGxlLmNvbSIsImp0aSI6IjAxZTZjNTczLTQ4YzQtNDYyMi04M2U3LThiNjRhZDNkZjg0NyIsIm5iZiI6MTU3OTE5MDI5NSwibmFtZSI6InJhb214IiwiYWdlIjozOH0.3jGXEPaXLuUsH8R-m-BDQght3-IhoUHDO7kK5gR0CsA"
-//  claims, err :=  Parse(token)
+//  claims, err :=  Verify(token)
 //  if err != nil {
-//      return fmt.Errorf("Parse %s err: %w", token, err)
+//      return fmt.Errorf("Verify %s err: %w", token, err)
 //  }
 //  name := claims["name"]
 package jwt
@@ -63,8 +63,8 @@ func init() {
 	secret = RandByte()
 }
 
-// GetToken from Claims.
-func (claims Claims) GetToken() string {
+// Sign from Claims.
+func (claims Claims) Sign() string {
 	headerEnc, _ := json.Marshal(map[string]interface{}{"alg": "HS256", "typ": "JWT"})
 	claims.setRegClaims()
 	claimsEnc, _ := json.Marshal(claims)
@@ -82,10 +82,10 @@ func (claims Claims) GetToken() string {
 	return fmt.Sprintf("%s.%s", jwtStr, base64.RawURLEncoding.EncodeToString(mac.Sum(nil)))
 }
 
-// Parse method.
+// Verify method.
 // Get Claims from a token, if secret , or header, or registered claims is not right,
 // the error is not nil.
-func Parse(tokenStr string) (Claims, error) {
+func Verify(tokenStr string) (Claims, error) {
 
 	if !verifyToken(tokenStr) {
 		return nil, errTokenInvalid
