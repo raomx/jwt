@@ -7,7 +7,7 @@ The JWT is a easy and minimal implementation of JWT, and just implements HMAC SH
 ## How to use:
 
 ### Get a jwt token
-    claims = Claims {
+    claims := Claims {
         "name": raomx,
         "age":  38,
     }
