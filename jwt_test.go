@@ -80,3 +80,18 @@ func TestGetToken(t *testing.T) {
 		t.Error("Sign failed")
 	}
 }
+
+func BenchmarkClaims_Sign(b *testing.B) {
+		var claims = Claims{}
+	for i := 0; i < b.N ; i++  {
+		claims.Sign()
+	}
+}
+
+func BenchmarkVerify(b *testing.B) {
+	var claims = Claims{}
+	token := claims.Sign()
+	for i := 0; i < b.N ; i++  {
+		Verify(token)
+	}
+}

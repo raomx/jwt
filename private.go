@@ -143,6 +143,3 @@ func verifyToken(token string) bool {
 	return hmac.Equal(signature, expectedMAC)
 }
 
-func setSecret(s string) {
-	secret = []byte(s)
-}

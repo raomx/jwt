@@ -134,3 +134,13 @@ func (claims Claims) Has(name string) bool {
 	_, ok := claims[name]
 	return ok
 }
+
+// SetSecret func
+func SetSecret(s string) {
+	secret = []byte(s)
+}
+
+// GetSecret func
+func GetSecret() string{
+	return string(secret)
+}
