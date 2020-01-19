@@ -6,7 +6,7 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	setSecret("TestVerify")
+	SetSecret("TestVerify")
 	var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NzkxODc0OTcsImlhdCI6MTU3OTE4NzQ5NywiZXhwIjoxNTc5MTk3MDAwLCJpc3MiOiJhdXRoLmV4YW1wbGUuY29tIn0.Bm6P3FogmZ0KClttChN_TuKes6_yrgo_FylkGNlW404"
 	_, err := Verify(token)
 	if err == nil {
@@ -60,7 +60,7 @@ func TestVerifyHead(t *testing.T) {
 }
 
 func TestVerify(t *testing.T) {
-	setSecret("TestVerify")
+	SetSecret("TestVerify")
 	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.8G4jyYZbsg1xtuUzD0JNSiHfIPT0CziOw1DRCTszVDE"
 	wanted := true
 	if verifyToken(token) != wanted {
@@ -69,7 +69,7 @@ func TestVerify(t *testing.T) {
 }
 
 func TestGetToken(t *testing.T) {
-	setSecret("TestVerify")
+	SetSecret("TestVerify")
 	var claims = Claims{}
 	claims["jti"] = 123
 	claims["sub"] = "test"
